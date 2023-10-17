@@ -63,11 +63,22 @@ public class RepositorioTecnico {
         ArrayList<Tecnico> tecnicoFiltrados = new ArrayList<>();
 
         for (Tecnico tecnico: tecnicoFiltrados) {
-            if (tecnico.getEquipe().getNome().equals(nomeEquipe)){
+            if (tecnico.getEquipe().getNome().toLowerCase().equals(nomeEquipe.toLowerCase())){
                 tecnicoFiltrados.add(tecnico);
             }
         }
         return tecnicoFiltrados;
+    }
+
+    public Tecnico procurarPorCpf(String cpf){
+        Tecnico cpfTecnico = null;
+        for (Tecnico tecnico: tecnicos){
+            if (tecnico.getCpf().equals(cpf)){
+                cpfTecnico = tecnico;
+                break;
+            }
+        }
+        return cpfTecnico;
     }
 
     public void deletarTodos(){

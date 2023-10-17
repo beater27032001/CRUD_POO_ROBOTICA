@@ -65,11 +65,22 @@ public class RepositorioAluno {
         ArrayList<Aluno> alunosFiltrados = new ArrayList<>();
 
         for (Aluno aluno: alunosFiltrados) {
-            if (aluno.getEquipe().getNome().equals(nomeEquipe)){
+            if (aluno.getEquipe().getNome().toLowerCase().equals(nomeEquipe.toLowerCase())){
                 alunosFiltrados.add(aluno);
             }
         }
         return alunosFiltrados;
+    }
+
+    public Aluno procurarPorCpf(String cpf){
+        Aluno cpfAluno = null;
+        for (Aluno aluno: alunos){
+            if (aluno.getCpf().equals(cpf)){
+                cpfAluno = aluno;
+                break;
+            }
+        }
+        return cpfAluno;
     }
 
     public void deletarTodos(){

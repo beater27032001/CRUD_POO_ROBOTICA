@@ -4,8 +4,8 @@ public class Tecnico extends Pessoa{
 
     private int idade;
 
-    public Tecnico(int id, String nome, String cpf, Equipe equipe, int idade) {
-        super(id, nome, cpf, equipe);
+    public Tecnico(String nome, String cpf, Equipe equipe, int idade) {
+        super(nome, cpf, equipe);
         this.idade = idade;
     }
 

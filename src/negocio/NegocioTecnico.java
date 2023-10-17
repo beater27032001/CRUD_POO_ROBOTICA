@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class NegocioTecnico {
 
     private RepositorioTecnico repositorioTecnico;
+    private NegocioEquipe negocioEquipe;
 
     public NegocioTecnico(){
         this.repositorioTecnico = RepositorioTecnico.getRepositorioTecnico();
@@ -27,7 +28,7 @@ public class NegocioTecnico {
         return repositorioTecnico.procurarPorId(id);
     }
 
-    public Tecnico inserir(Tecnico item) throws NomeNullException, NomeVazioException, NomeMuitoPequenoException, TecnicoDeMenorException {
+    public Tecnico inserir(Tecnico item) throws NomeNullException, NomeVazioException, NomeMuitoPequenoException, TecnicoDeMenorException, EquipeInvalidaException, CpfSomentoNumerosException, CpfCaracterException, CpfIgualException {
         if (item.getNome() == null){
             throw new NomeNullException();
         } else if (item.getNome().isEmpty()) {
@@ -39,6 +40,24 @@ public class NegocioTecnico {
         if (item.getIdade() < 18){
             throw new TecnicoDeMenorException();
         }
+
+        if (item.getCpf().indexOf(".") != -1 || item.getCpf().indexOf("-") != -1) {
+            throw new CpfSomentoNumerosException();
+        } else if (item.getCpf().length() != 11) {
+            throw new CpfCaracterException();
+        }
+
+        if (repositorioTecnico.procurarPorCpf(item.getCpf()) != null) {
+            throw new CpfIgualException();
+        }
+
+        int qtdTecnicos =  repositorioTecnico.procurarPorEquipe(item.getEquipe().getNome()).size();
+
+        if (qtdTecnicos > 2){
+            throw new EquipeInvalidaException();
+        }
+
+        negocioEquipe.validate(item.getEquipe());
 
         return repositorioTecnico.inserir(item);
     }

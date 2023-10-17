@@ -5,9 +5,10 @@ public class Equipe {
     private int id;
     private String nome;
     private Uf uf;
+    private boolean isValid = false;
 
-    public Equipe(int id, String nome, Uf uf) {
-        this.id = id;
+    public Equipe(String nome, Uf uf) {
+        this.id = 0;
         this.nome = nome;
         this.uf = uf;
     }
@@ -36,6 +37,14 @@ public class Equipe {
         this.uf = uf;
     }
 
+    public boolean isValid() {
+        return isValid;
+    }
+
+    public void setValid(boolean valid) {
+        isValid = valid;
+    }
+
     @Override
     public String toString() {
         return "Equipe{" +
@@ -44,4 +53,6 @@ public class Equipe {
                 ", uf=" + uf +
                 '}';
     }
+
+
 }
