@@ -1,8 +1,6 @@
 package repositorio;
 
 import modelo.Campeonato;
-import modelo.Equipe;
-import modelo.Tecnico;
 
 import java.util.ArrayList;
 
@@ -18,6 +16,7 @@ public class RepositorioCampeonato {
         ultimoIdAdicionado = 0;
     }
 
+    //Aplica o code pattern singleton
     public static RepositorioCampeonato getRepositorioCampeonato(){
         if (singleton == null){
             singleton = new RepositorioCampeonato();
@@ -29,7 +28,6 @@ public class RepositorioCampeonato {
         ultimoIdAdicionado = ultimoIdAdicionado + 1;
         item.setId(ultimoIdAdicionado);
         campeonatoes.add(item);
-
         return item;
     }
 

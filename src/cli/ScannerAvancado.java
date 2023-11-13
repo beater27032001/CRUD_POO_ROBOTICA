@@ -4,6 +4,10 @@ import modelo.Equipe;
 import modelo.Uf;
 import negocio.NegocioEquipe;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Formatter;
 import java.util.Scanner;
 
 public class ScannerAvancado {
@@ -13,25 +17,14 @@ public class ScannerAvancado {
         scan = new Scanner(System.in);
     }
 
-    public double pedirDouble(String textoPedido) {
+    public int pedirInt(String textoPedido) {
         try {
             System.out.println(textoPedido);
             String valorlido = scan.nextLine();
-            double valorInicial = Double.parseDouble(valorlido);
+            int valorInicial = Integer.parseInt(valorlido);
             return valorInicial;
         } catch (NumberFormatException nfe) {
-            System.out.println("O valor informado não é um número. Por favor insira um número.");
-            return pedirDouble(textoPedido);
-        }
-    }
-
-    public String pedirInt(String textoPedido) {
-        try {
-            System.out.println(textoPedido);
-            String valorlido = scan.nextLine();
-            return valorlido;
-        } catch (NumberFormatException nfe) {
-            System.out.println("O valor informado não é um número. Por favor insira um número.");
+            System.out.println("O valor informado não é um número. Por favor insira um número.\n");
             return pedirInt(textoPedido);
         }
     }
@@ -45,15 +38,15 @@ public class ScannerAvancado {
     }
 
     public Uf pedirUf() {
-        System.out.println("Escolha o Estado:");
-        System.out.println("AC: Acre | AL: Alagoas | AM: Amazonas | AP: Amapá | BA: Bahia");
-        System.out.println("CE: Ceará | DF: Distrito Federal | ES: Espírito Santo | GO: Goiás | MA: Maranhão");
-        System.out.println("MG: Minas Gerais | MS: Mato Grosso do Sul | MT: Mato Grosso | PA: Pará | PB: Paraíba");
-        System.out.println("PE: Pernambuco | PI: Piauí | PR: Paraná | RJ: Rio de Janeiro | RN: Rio Grande do Norte");
-        System.out.println("RO: Rondônia | RR: Roraima | RS: Rio Grande do Sul | SC: Santa Catarina | SE: Sergipe");
-        System.out.println("SP: São Paulo | TO: Tocantins");
-        String escolhido = scan.nextLine();
         Uf uf = null;
+
+        String escolhido = pedirString("Escolha o Estado:" + "\nAC: Acre | AL: Alagoas | AM: Amazonas | AP: Amapá | BA: Bahia" +
+                "\nCE: Ceará | DF: Distrito Federal | ES: Espírito Santo | GO: Goiás | MA: Maranhão" +
+                "\nMG: Minas Gerais | MS: Mato Grosso do Sul | MT: Mato Grosso | PA: Pará | PB: Paraíba" +
+                "\nPE: Pernambuco | PI: Piauí | PR: Paraná | RJ: Rio de Janeiro | RN: Rio Grande do Norte" +
+                "\nRO: Rondônia | RR: Roraima | RS: Rio Grande do Sul | SC: Santa Catarina | SE: Sergipe" +
+                "\nSP: São Paulo | TO: Tocantins" +
+                "\n\nDIGITE A SIGLA DO ESTADO!\n");
 
         while (uf == null) {
             if (escolhido.equalsIgnoreCase("AC")) {
@@ -112,11 +105,17 @@ public class ScannerAvancado {
                 uf = Uf.TO;
             } else {
                 System.out.println("Estado inválido. Tente novamente.");
+                escolhido = pedirString("Escolha o Estado:" + "\nAC: Acre | AL: Alagoas | AM: Amazonas | AP: Amapá | BA: Bahia" +
+                        "\nCE: Ceará | DF: Distrito Federal | ES: Espírito Santo | GO: Goiás | MA: Maranhão" +
+                        "\nMG: Minas Gerais | MS: Mato Grosso do Sul | MT: Mato Grosso | PA: Pará | PB: Paraíba" +
+                        "\nPE: Pernambuco | PI: Piauí | PR: Paraná | RJ: Rio de Janeiro | RN: Rio Grande do Norte" +
+                        "\nRO: Rondônia | RR: Roraima | RS: Rio Grande do Sul | SC: Santa Catarina | SE: Sergipe" +
+                        "\nSP: São Paulo | TO: Tocantins" +
+                        "\n\nDIGITE A SIGLA DO ESTADO!");
             }
         }
         return uf;
     }
-
 
     public Equipe pedirEquipe(NegocioEquipe negocioEquipe, String s) {
         Equipe e = null;
@@ -126,5 +125,21 @@ public class ScannerAvancado {
         }
         return e;
     }
+
+    public LocalDateTime pedirData(String textoPedido){
+        try {
+            System.out.println(textoPedido);
+            String valorlido = scan.nextLine() + " 00:00:00";
+            DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            //LocalDateTime valorInicial = LocalDateTime.parse(valorlido,formatter);
+            LocalDateTime valorInicial = LocalDateTime.from(f.parse(valorlido));
+            return valorInicial;
+        } catch (Exception e) {
+            System.out.println("Erro ao fazer ao passar da data. Certifique-se de usar o formato correto.\n");
+            System.out.println(e.getMessage());
+            return pedirData(textoPedido);
+        }
+    }
+
 
 }

@@ -57,7 +57,7 @@ public class NegocioTecnico {
             throw new EquipeInvalidaException();
         }
 
-        negocioEquipe.validate(item.getEquipe());
+//        negocioEquipe.validate(item.getEquipe());
 
         return repositorioTecnico.inserir(item);
     }

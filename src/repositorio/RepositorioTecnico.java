@@ -16,6 +16,7 @@ public class RepositorioTecnico {
         ultimoIdAdicionado = 0;
     }
 
+    //Aplica o code pattern singleton
     public static RepositorioTecnico getRepositorioTecnico(){
         if (singleton == null){
             singleton = new RepositorioTecnico();
@@ -62,7 +63,7 @@ public class RepositorioTecnico {
     public ArrayList<Tecnico> procurarPorEquipe(String nomeEquipe){
         ArrayList<Tecnico> tecnicoFiltrados = new ArrayList<>();
 
-        for (Tecnico tecnico: tecnicoFiltrados) {
+        for (Tecnico tecnico: this.tecnicos) {
             if (tecnico.getEquipe().getNome().toLowerCase().equals(nomeEquipe.toLowerCase())){
                 tecnicoFiltrados.add(tecnico);
             }

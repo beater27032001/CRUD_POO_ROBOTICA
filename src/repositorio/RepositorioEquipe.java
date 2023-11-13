@@ -2,7 +2,6 @@ package repositorio;
 
 import modelo.Equipe;
 
-
 import java.util.ArrayList;
 
 public class RepositorioEquipe {
@@ -16,6 +15,7 @@ public class RepositorioEquipe {
         ultimoIdAdicionado = 0;
     }
 
+    //Aplica o code pattern singleton
     public static RepositorioEquipe getRepositorioEquipe(){
         if (singleton == null){
             singleton = new RepositorioEquipe();
@@ -46,6 +46,10 @@ public class RepositorioEquipe {
         }
         return item;
     }
+
+//    public Equipe procurarPorId(ArrayList<int> ids){
+//
+//    }
 
     public Equipe procurarPorNome(String nome){
         Equipe item = null;

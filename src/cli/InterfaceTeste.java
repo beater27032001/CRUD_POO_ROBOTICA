@@ -13,8 +13,9 @@ import repositorio.RepositorioTecnico;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 
-public class Interface {
+public class InterfaceTeste {
 
     private static RepositorioEquipe repositorioEquipe = RepositorioEquipe.getRepositorioEquipe();
     private static RepositorioCampeonato repositorioCampeonato = RepositorioCampeonato.getRepositorioCampeonato();
@@ -27,6 +28,33 @@ public class Interface {
     private static NegocioCampeonato negocioCampeonato = new NegocioCampeonato();
 
     private static ScannerAvancado scanner = new ScannerAvancado();
+
+    private static ArrayList<Equipe> equipesE = new ArrayList<>(
+            Arrays.asList(
+                    new Equipe("teste1", Uf.PA),
+                    new Equipe("teste2", Uf.PA)
+            )
+    );
+
+    private static ArrayList<Aluno> alunosA = new ArrayList<>(
+            Arrays.asList(
+                    new Aluno("jose", "11111111111", null ,12),
+                    new Aluno("joao", "22222222222", null ,12)
+            )
+    );
+
+    private static ArrayList<Tecnico> tecnicosT = new ArrayList<>(
+            Arrays.asList(
+                new Tecnico("bruno", "33333333333", null ,33),
+                new Tecnico("victor", "44444444444", null ,33)
+            )
+    );
+
+    private static ArrayList<Integer> indice = new ArrayList<>(
+            Arrays.asList(
+                    0, 0 ,0
+            )
+    );
 
     public static void main(String[] args) throws NomeMuitoPequenoException, NomeDuplicadoException, NomeNullException, NomeVazioException, IdInvalidoException, IdNegativoException, CpfCaracterException, EquipeInvalidaException, CpfSomentoNumerosException, CpfIgualException, AlunoDeMaiorException, AlunoDeMenorException, TecnicoDeMenorException {
 
@@ -109,11 +137,13 @@ public class Interface {
     }
 
     public static void cadastrarEquipe() throws NomeMuitoPequenoException, NomeDuplicadoException, NomeNullException, NomeVazioException{
-        String nomeEquipe = scanner.pedirString("Digite o nome da equipe a ser inserida: ");
-        Uf ufEquipe = scanner.pedirUf();
+//        String nomeEquipe = scanner.pedirString("Digite o nome da equipe a ser inserida: ");
+//        Uf ufEquipe = scanner.pedirUf();
 
         try {
-            negocioEquipe.inserir(new Equipe(nomeEquipe,ufEquipe));
+//            negocioEquipe.inserir(new Equipe(nomeEquipe,ufEquipe));
+            negocioEquipe.inserir(equipesE.get(indice.get(0)));
+            indice.set(0, indice.get(0) + 1);
         } catch (NomeMuitoPequenoException e) {
             System.out.println("Digite um nome com 2 ou mais caracteres, tente novamente.\n");
         } catch (NomeDuplicadoException e) {
@@ -138,9 +168,9 @@ public class Interface {
     }
 
     public static void cadastrarAluno() throws NomeNullException, NomeVazioException, NomeMuitoPequenoException, CpfCaracterException, CpfIgualException, CpfSomentoNumerosException, EquipeInvalidaException, AlunoDeMaiorException, AlunoDeMenorException{
-        String nomeAluno = scanner.pedirString("Digite o nome do(a) aluno(a) a ser cadastrado(a): ");
-        int idadeAluno = scanner.pedirInt("Digite a idade do(a) aluno(a): ");
-        String cpfAluno = scanner.pedirString("Digite o cpf do(a) aluno(a): ");
+//        String nomeAluno = scanner.pedirString("Digite o nome do(a) aluno(a) a ser cadastrado(a): ");
+//        int idadeAluno = scanner.pedirInt("Digite a idade do(a) aluno(a): ");
+//        String cpfAluno = scanner.pedirString("Digite o cpf do(a) aluno(a): ");
 
         ArrayList<Equipe> equipes = negocioEquipe.procurarTodos();
 
@@ -148,10 +178,16 @@ public class Interface {
             System.out.println(String.format("[%d] ", i) + equipes.get(i));
         }
 
-        Equipe e = scanner.pedirEquipe(negocioEquipe, "Digite um nome de uma Equipe existente para o(a) aluno(a): ");
+//        Equipe e = scanner.pedirEquipe(negocioEquipe, "Digite um nome de uma Equipe existente para o(a) aluno(a): ");
+        Equipe e = negocioEquipe.procurarPorNome(equipesE.get(indice.get(1)).getNome());
+        Aluno newAluno = alunosA.get(indice.get(1));
+        newAluno.setEquipe(e);
+        alunosA.set(indice.get(1), newAluno);
 
         try {
-          negocioAluno.inserir(new Aluno(nomeAluno, cpfAluno, e, idadeAluno));
+//          negocioAluno.inserir(new Aluno(nomeAluno, cpfAluno, e, idadeAluno));
+            negocioAluno.inserir(newAluno);
+            indice.set(1, indice.get(1) + 1);
         } catch (NomeMuitoPequenoException ex) {
             System.out.println("Digite um nome com 2 ou mais caracteres, tente novamente.\n");
         } catch (EquipeInvalidaException ex) {
@@ -185,9 +221,9 @@ public class Interface {
     }
 
     private static void cadastrarTecnico() throws NomeMuitoPequenoException, EquipeInvalidaException, CpfCaracterException, CpfIgualException, CpfSomentoNumerosException, NomeNullException, NomeVazioException, TecnicoDeMenorException{
-        String nomeTecnico = scanner.pedirString("Digite o nome do(a) técnico(a) a ser cadastrado(a): ");
-        int idadeTecnico = scanner.pedirInt("Digite a idade do(a) técnico(a): ");
-        String cpfTecnico = scanner.pedirString("Digite o cpf do(a) técnico(a): ");
+//        String nomeTecnico = scanner.pedirString("Digite o nome do(a) técnico(a) a ser cadastrado(a): ");
+//        int idadeTecnico = scanner.pedirInt("Digite a idade do(a) técnico(a): ");
+//        String cpfTecnico = scanner.pedirString("Digite o cpf do(a) técnico(a): ");
 
         ArrayList<Equipe> equipes = negocioEquipe.procurarTodos();
 
@@ -195,10 +231,16 @@ public class Interface {
             System.out.println(String.format("[%d] ", i) + equipes.get(i));
         }
 
-        Equipe e = scanner.pedirEquipe(negocioEquipe, "Digite um nome de uma Equipe existente para o(a) técnico(a): ");
+//        Equipe e = scanner.pedirEquipe(negocioEquipe, "Digite um nome de uma Equipe existente para o(a) técnico(a): ");
+        Equipe e = negocioEquipe.procurarPorNome(equipesE.get(indice.get(1)).getNome());
+        Tecnico newTecnico = tecnicosT.get(indice.get(1));
+        newTecnico.setEquipe(e);
+        tecnicosT.set(indice.get(2), newTecnico);
 
         try {
-          negocioTecnico.inserir(new Tecnico(nomeTecnico, cpfTecnico, e, idadeTecnico));
+//          negocioTecnico.inserir(new Tecnico(nomeTecnico, cpfTecnico, e, idadeTecnico));
+            negocioTecnico.inserir(newTecnico);
+            indice.set(2, indice.get(2) + 1);
         } catch (NomeMuitoPequenoException ex) {
             System.out.println("Digite um nome com 2 ou mais caracteres, tente novamente.\n");
         } catch (EquipeInvalidaException ex) {
@@ -238,6 +280,8 @@ public class Interface {
         for (int i = 0; i < qtdEquipesCastradas; i++){
             Equipe e = scanner.pedirEquipe(negocioEquipe, "Digite um nome de uma Equipe existente para o(a) técnico(a): ");
             es.add(e);
+            System.out.println(e);
+            System.out.println(es);
         }
 
         try {

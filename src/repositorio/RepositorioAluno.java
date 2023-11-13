@@ -1,8 +1,6 @@
 package repositorio;
 
 import modelo.Aluno;
-import modelo.Equipe;
-import modelo.Tecnico;
 
 import java.util.ArrayList;
 
@@ -17,6 +15,7 @@ public class RepositorioAluno {
         ultimoIdAdicionado = 0;
     }
 
+    //Aplica o code pattern singleton
     public static RepositorioAluno getRepositorioAluno(){
         if (singleton == null){
             singleton = new RepositorioAluno();
@@ -26,7 +25,6 @@ public class RepositorioAluno {
 
     public Aluno inserir(Aluno item){
         ultimoIdAdicionado = ultimoIdAdicionado + 1;
-        //item.setId(alunos.size());
         item.setId(ultimoIdAdicionado);
         alunos.add(item);
 
@@ -64,7 +62,7 @@ public class RepositorioAluno {
     public ArrayList<Aluno> procurarPorEquipe(String nomeEquipe){
         ArrayList<Aluno> alunosFiltrados = new ArrayList<>();
 
-        for (Aluno aluno: alunosFiltrados) {
+        for (Aluno aluno: this.alunos) {
             if (aluno.getEquipe().getNome().toLowerCase().equals(nomeEquipe.toLowerCase())){
                 alunosFiltrados.add(aluno);
             }

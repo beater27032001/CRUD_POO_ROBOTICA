@@ -10,8 +10,8 @@ public class Campeonato {
     private ArrayList<Equipe> equipes;
     private LocalDateTime dia;
 
-    public Campeonato(int id, String nome, ArrayList<Equipe> equipes, LocalDateTime dia) {
-        this.id = id;
+    public Campeonato(String nome, ArrayList<Equipe> equipes, LocalDateTime dia) {
+        this.id = 0;
         this.nome = nome;
         this.equipes = equipes;
         this.dia = dia;
@@ -51,11 +51,10 @@ public class Campeonato {
 
     @Override
     public String toString() {
-        return "Campeonato{" +
-                "id=" + id +
-                ", nome=" + nome +
-                ", equipes=" + equipes +
-                ", dia=" + dia +
+        return "{Nome: " + nome + " - " +
+                "equipes: (" + equipes + ") - " +
+                "dia: " + dia + " - " +
+                "id: " + id +
                 '}';
     }
 }

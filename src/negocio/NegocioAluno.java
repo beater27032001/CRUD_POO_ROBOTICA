@@ -62,7 +62,7 @@ public class NegocioAluno {
         }
 
 
-        negocioEquipe.validate(item.getEquipe());
+//        negocioEquipe.validate(item.getEquipe());
 
         return repositorioAluno.inserir(item);
     }

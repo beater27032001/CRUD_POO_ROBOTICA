@@ -19,8 +19,10 @@ public class Aluno extends Pessoa{
 
     @Override
     public String toString() {
-        return "Aluno{" +
-                "idade=" + idade +
+        return "{Nome: " + getNome() + " - " +
+                "idade: " + idade + " - " +
+                "equipe: " + getEquipe().getNome() + " - " +
+                "id: " + getId() +
                 '}';
     }
 }

@@ -22,13 +22,13 @@ public class NegocioEquipe {
         this.repositorioTecnico = RepositorioTecnico.getRepositorioTecnico();
     }
 
-    public void validate(Equipe equipe){
-        int qtdAluno = repositorioAluno.procurarPorEquipe(equipe.getNome()).size();
-        int qtdTecnico = repositorioTecnico.procurarPorEquipe(equipe.getNome()).size();
-        if (qtdAluno >= 2 && qtdAluno <= 10 && qtdTecnico >= 1 && qtdTecnico <= 2){
-            equipe.setValid(true);
-        }
-    }
+//    public void validate(Equipe equipe){
+//        int qtdAluno = repositorioAluno.procurarPorEquipe(equipe.getNome()).size();
+//        int qtdTecnico = repositorioTecnico.procurarPorEquipe(equipe.getNome()).size();
+//        if (qtdAluno >= 2 && qtdAluno <= 10 && qtdTecnico >= 1 && qtdTecnico <= 2){
+//            equipe.setValid(true);
+//        }
+//    }
 
     public ArrayList<Equipe> procurarTodos(){
         return repositorioEquipe.procurarTodos();

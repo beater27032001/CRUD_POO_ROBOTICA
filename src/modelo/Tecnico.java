@@ -19,8 +19,10 @@ public class Tecnico extends Pessoa{
 
     @Override
     public String toString() {
-        return "Tecnico{" +
-                "idade=" + idade +
+        return "{Nome: " + getNome() + " - " +
+                "idade: " + idade + " - " +
+                "equipe: " + getEquipe().getNome() + " - " +
+                "id: " + getId() +
                 '}';
     }
 }
