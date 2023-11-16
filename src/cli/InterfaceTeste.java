@@ -134,6 +134,7 @@ public class InterfaceTeste {
                 }
             }
         }
+
     }
 
     public static void cadastrarEquipe() throws NomeMuitoPequenoException, NomeDuplicadoException, NomeNullException, NomeVazioException{

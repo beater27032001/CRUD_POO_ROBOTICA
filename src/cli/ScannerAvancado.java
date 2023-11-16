@@ -111,7 +111,7 @@ public class ScannerAvancado {
                         "\nPE: Pernambuco | PI: Piauí | PR: Paraná | RJ: Rio de Janeiro | RN: Rio Grande do Norte" +
                         "\nRO: Rondônia | RR: Roraima | RS: Rio Grande do Sul | SC: Santa Catarina | SE: Sergipe" +
                         "\nSP: São Paulo | TO: Tocantins" +
-                        "\n\nDIGITE A SIGLA DO ESTADO!");
+                        "\nDIGITE A SIGLA DO ESTADO!");
             }
         }
         return uf;
